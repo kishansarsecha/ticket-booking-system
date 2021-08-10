@@ -13,3 +13,11 @@ func CreateSuccessApiResponse(data interface{}) APIResponse {
 		Data:    data,
 	}
 }
+
+func CreateErrorApiResponse(err error)  APIResponse{
+	return APIResponse{
+		Success: false,
+		Errors: []string{err.Error()},
+		Data:    nil,
+	}
+}

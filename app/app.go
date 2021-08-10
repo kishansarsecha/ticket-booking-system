@@ -13,9 +13,7 @@ func StartServer() {
 	v1 := server.Group("/v1")
 
 	{
-		v1.POST("/book", func(context *gin.Context) {
-			context.JSON(http.StatusCreated, handler.BookTicket())
-		})
+		v1.POST("/book", handleBookTicket())
 
 		v1.GET("/ping", func(context *gin.Context) {
 			context.JSON(http.StatusOK, gin.H{"status": "running"})
@@ -29,4 +27,11 @@ func StartServer() {
 	}
 
 	fmt.Println("Server Started")
+}
+
+func handleBookTicket() func(context *gin.Context) {
+	return func(context *gin.Context) {
+		status, response := handler.BookTicket(context)
+		context.JSON(status, response)
+	}
 }
