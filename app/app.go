@@ -11,8 +11,8 @@ func StartServer() {
 
 	server := gin.Default()
 
-	server.GET("/book", func(context *gin.Context) {
-			context.String(http.StatusCreated, handler.BookTicket())
+	server.POST("/book", func(context *gin.Context) {
+		context.JSON(http.StatusCreated, handler.BookTicket())
 	})
 
 	if err := server.Run(":8080"); err != nil {
