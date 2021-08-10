@@ -8,14 +8,12 @@ import (
 
 func BookTicket() http.APIResponse {
 	data := domain.Ticket{
-		Entity:  domain.Entity{
-			Id: "1",
-		},
+		Id: "1",
 		Catalog: domain.Catalog{
 			Id:   "c1",
 			Name: "Movie 1",
 		},
-		Slot:    domain.Slot{
+		Slot: domain.Slot{
 			Id:   "s1",
 			Date: time.Now(),
 		},

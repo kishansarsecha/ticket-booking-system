@@ -2,12 +2,8 @@ package domain
 
 import "time"
 
-type Entity struct {
-	Id string `json:"id"`
-}
-
 type Ticket struct {
-	Entity  `json:"entity"`
+	Id      string `json:"id"`
 	Catalog `json:"catalog"`
 	Slot    `json:"slot"`
 }
