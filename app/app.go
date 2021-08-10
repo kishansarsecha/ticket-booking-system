@@ -8,12 +8,19 @@ import (
 )
 
 func StartServer() {
-
 	server := gin.Default()
 
-	server.POST("/book", func(context *gin.Context) {
-		context.JSON(http.StatusCreated, handler.BookTicket())
-	})
+	v1 := server.Group("/v1")
+
+	{
+		v1.POST("/book", func(context *gin.Context) {
+			context.JSON(http.StatusCreated, handler.BookTicket())
+		})
+
+		v1.GET("/ping", func(context *gin.Context) {
+			context.JSON(http.StatusOK, gin.H{"status": "running"})
+		})
+	}
 
 	if err := server.Run(":8080"); err != nil {
 		_ = fmt.Errorf("something went wrong %s", err)
@@ -22,10 +29,4 @@ func StartServer() {
 	}
 
 	fmt.Println("Server Started")
-}
-
-func pingHandler() http.HandlerFunc {
-	return func(writer http.ResponseWriter, request *http.Request) {
-		writer.WriteHeader(http.StatusOK)
-	}
 }

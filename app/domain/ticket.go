@@ -3,9 +3,9 @@ package domain
 import "time"
 
 type Ticket struct {
-	Id      string `json:"id"`
-	Catalog `json:"catalog"`
-	Slot    `json:"slot"`
+	Id      string  `json:"id"`
+	Catalog Catalog `json:"catalog"`
+	Slot    Slot    `json:"slot"`
 }
 
 type Catalog struct {
